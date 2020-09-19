@@ -219,6 +219,57 @@ TEST(grid_tests, grid_swap)
     ASSERT_EQ(data_ptr, other.data());
 }
 
+TEST(grid_tests, grid_begin_end)
+{
+    grid::grid<std::string> gr(3,2);
+    const grid::grid<std::string>& cgr = gr;
+    ASSERT_EQ(&*gr.begin(), &gr.get(0,0));
+    ASSERT_EQ(&*cgr.begin(), &cgr.get(0,0));
+    ASSERT_EQ(&*gr.end(), &gr.get(0,2));
+    ASSERT_EQ(&*cgr.end(), &cgr.get(0,2));
+    auto iter = gr.begin() + 3;
+    auto citer = cgr.begin() + 3;
+    ASSERT_EQ(&*iter, &gr.get(0,1));
+    ASSERT_EQ(&*citer, &cgr.get(0,1));
+}
+
+TEST(grid_tests, grid_value)
+{
+    grid::grid<std::string> gr(3,2);
+    grid::grid_position pos = gr.value_position(gr.get(1,0));
+    ASSERT_EQ(pos, grid::grid_position(1,0));
+    pos = gr.value_position(gr.get(2,1));
+    ASSERT_EQ(pos, grid::grid_position(2,1));
+}
+
+TEST(grid_tests, grid_iterator_position)
+{
+    grid::grid<std::string> gr(3,2);
+    const grid::grid<std::string>& cgr = gr;
+    ASSERT_EQ(gr.iterator_position(gr.begin()), grid::grid_position(0,0));
+    ASSERT_EQ(cgr.iterator_position(cgr.begin()), grid::grid_position(0,0));
+    ASSERT_EQ(gr.iterator_position(gr.end()), grid::grid_position(0,2));
+    ASSERT_EQ(cgr.iterator_position(cgr.end()), grid::grid_position(0,2));
+    ASSERT_EQ(gr.iterator_position(gr.begin() + 3), grid::grid_position(0,1));
+    ASSERT_EQ(cgr.iterator_position(cgr.begin() + 3), grid::grid_position(0,1));
+    ASSERT_EQ(gr.iterator_position(gr.begin() + 4), grid::grid_position(1,1));
+    ASSERT_EQ(cgr.iterator_position(cgr.begin() + 4), grid::grid_position(1,1));
+}
+
+TEST(grid_tests, grid_iterator_at)
+{
+    grid::grid<std::string> gr(3,2);
+    const grid::grid<std::string>& cgr = gr;
+    ASSERT_EQ(gr.iterator_at(grid::grid_position(0,0)), gr.begin());
+    ASSERT_EQ(cgr.iterator_at(grid::grid_position(0,0)), cgr.begin());
+    ASSERT_EQ(gr.iterator_at(grid::grid_position(0,2)), gr.end());
+    ASSERT_EQ(cgr.iterator_at(grid::grid_position(0,2)), cgr.end());
+    ASSERT_EQ(gr.iterator_at(grid::grid_position(0,1)), gr.begin() + 3);
+    ASSERT_EQ(cgr.iterator_at(grid::grid_position(0,1)), cgr.begin() + 3);
+    ASSERT_EQ(gr.iterator_at(grid::grid_position(1,1)), gr.begin() + 4);
+    ASSERT_EQ(cgr.iterator_at(grid::grid_position(1,1)), cgr.begin() + 4);
+}
+
 int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

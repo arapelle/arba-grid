@@ -20,10 +20,10 @@ public:
     inline bool contains(grid_position::number_type i, grid_position::number_type j) const;
     inline bool contains(const grid_position& pos) const { return contains(pos.x(), pos.y()); }
 
-    void advance(grid_position& position) const;
+    inline void advance(grid_position& position) const;
     inline grid_position next(grid_position position) const;
 
-    void advance_backward(grid_position& position) const;
+    inline void advance_backward(grid_position& position) const;
     inline grid_position previous(grid_position position) const;
 
     inline bool operator==(const grid_base& rhs) const = default;

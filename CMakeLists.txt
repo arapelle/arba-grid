@@ -15,7 +15,7 @@ set_build_type_if_undefined()
 # C++ PROJECT
 
 project(grid
-        VERSION 0.1.0
+        VERSION 0.2
         DESCRIPTION "Simple C++ tools to manipulate 2D grid objects."
         HOMEPAGE_URL "https://github.com/arapelle/grid"
         LANGUAGES CXX)

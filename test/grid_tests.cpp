@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <cstdlib>
 
-template class grid::grid<std::string>;
+template class arba::grid::grid<std::string>;
 
 TEST(grid_tests, grid_constructor_empty)
 {

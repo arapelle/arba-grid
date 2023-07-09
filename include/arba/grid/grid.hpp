@@ -3,8 +3,11 @@
 #include "grid_base.hpp"
 #include <vector>
 
+inline namespace arba
+{
 namespace grid
 {
+
 template <typename valuetype>
 class grid : public grid_base
 {
@@ -114,5 +117,7 @@ void grid<valuetype>::swap(grid &other)
 {
     base::swap(other);
     std::swap(data_, other.data_);
+}
+
 }
 }

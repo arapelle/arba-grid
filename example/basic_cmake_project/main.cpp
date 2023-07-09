@@ -1,4 +1,5 @@
 #include <arba/grid/grid.hpp>
+#include <arba/grid/version.hpp>
 #include <string>
 #include <iostream>
 

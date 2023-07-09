@@ -30,9 +30,9 @@ generate_version_macro_header(generated_version_header
 
 ## Headers:
 set(headers
-    include/grid/grid.hpp
-    include/grid/grid_base.hpp
-    include/grid/grid_types.hpp
+    include/arba/grid/grid.hpp
+    include/arba/grid/grid_base.hpp
+    include/arba/grid/grid_types.hpp
 )
 
 ## Add C++ library:

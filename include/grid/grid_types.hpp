@@ -1,6 +1,6 @@
 #pragma once
 
-#include <math/vec2.hpp>
+#include <arba/math/vec2.hpp>
 
 namespace grid
 {

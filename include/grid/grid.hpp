@@ -1,7 +1,6 @@
 #pragma once 
 
 #include "grid_base.hpp"
-#include <math/vec2.hpp>
 #include <vector>
 
 namespace grid

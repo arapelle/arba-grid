@@ -269,9 +269,3 @@ TEST(grid_tests, grid_iterator_at)
     ASSERT_EQ(gr.iterator_at(grid::grid_position(1,1)), gr.begin() + 4);
     ASSERT_EQ(cgr.iterator_at(grid::grid_position(1,1)), cgr.begin() + 4);
 }
-
-int main(int argc, char** argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

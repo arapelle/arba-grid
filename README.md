@@ -2,25 +2,27 @@
 
 The purpose is to provide simple C++ tools to manipulate 2D grid objects.
 
-See [task board](https://app.gitkraken.com/glo/board/X2R4tCQxbQAR8JQl) for future updates and features.
-
 # Install
 
 ## Requirements
 
 Binaries:
 
-- A C++20 compiler (ex: g++-10)
-- CMake 3.16 or later
+- A C++20 compiler (ex: g++-13)
+- CMake 3.26 or later
 
 Libraries:
 
-- [Google Test](https://github.com/google/googletest) 1.10 or later (only for testing)
+- [math](https://github.com/arapelle/math) 0.4.0 or later
+
+Testing Libraries (optional):
+
+- [Google Test](https://github.com/google/googletest) 1.13 or later (optional)
 
 ## Clone
 
 ```
-git clone https://github.com/arapelle/grid --recurse-submodules
+git clone https://github.com/arapelle/arba-grid --recurse-submodules
 ```
 
 ## Quick Install
@@ -28,14 +30,14 @@ git clone https://github.com/arapelle/grid --recurse-submodules
 There is a cmake script at the root of the project which builds the library in *Release* mode and install it (default options are used).
 
 ```
-cd /path/to/grid
-cmake -P cmake_quick_install.cmake
+cd /path/to/arba-grid
+cmake -P cmake/scripts/quick_install.cmake
 ```
 
 Use the following to quickly install a different mode.
 
 ```
-cmake -DCMAKE_BUILD_TYPE=Debug -P cmake_quick_install.cmake
+cmake -P cmake/scripts/quick_install.cmake -- TESTS BUILD Debug DIR /tmp/local
 ```
 
 ## Uninstall
@@ -43,8 +45,8 @@ cmake -DCMAKE_BUILD_TYPE=Debug -P cmake_quick_install.cmake
 There is a uninstall cmake script created during installation. You can use it to uninstall properly this library.
 
 ```
-cd /path/to/installed-grid/
-cmake -P cmake_uninstall.cmake
+cd /path/to/installed-arba-grid/
+cmake -P uninstall.cmake
 ```
 
 # How to use
@@ -52,7 +54,7 @@ cmake -P cmake_uninstall.cmake
 ## Example - Print a grid
 
 ```c++
-#include <grid/grid.hpp>
+#include <arba/grid/grid.hpp>
 #include <string>
 #include <iostream>
 
@@ -83,7 +85,7 @@ int main()
 
 ## Example - Using *grid* in a CMake project
 
-See the [basic cmake project](https://github.com/arapelle/grid/tree/master/example/basic_cmake_project) example, and more specifically the [CMakeLists.txt](https://github.com/arapelle/grid/tree/master/example/basic_cmake_project/CMakeLists.txt) to see how to use *grid* in your CMake projects.
+See *basic_cmake_project* example, and more specifically the *CMakeLists.txt* to see how to use *grid* in your CMake projects.
 
 # License
 

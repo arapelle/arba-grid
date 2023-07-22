@@ -20,7 +20,6 @@ Testing Libraries (optional):
 - [Google Test](https://github.com/google/googletest) 1.13 or later (optional)
 
 ## Clone
-
 ```
 git clone https://github.com/arapelle/arba-grid --recurse-submodules
 ```
@@ -89,4 +88,4 @@ See *basic_cmake_project* example, and more specifically the *CMakeLists.txt* to
 
 # License
 
-[MIT License](https://github.com/arapelle/grid/blob/master/LICENSE.md) © grid
+[MIT License](./LICENSE.md) © grid

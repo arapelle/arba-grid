@@ -16,7 +16,7 @@ set(PROJECT_VERSION 0.3.0)
 project(${PROJECT_NAME}
         VERSION ${PROJECT_VERSION}
         DESCRIPTION "Simple C++ tools to manipulate 2D grid objects."
-        HOMEPAGE_URL "https://github.com/arapelle/grid"
+        HOMEPAGE_URL "https://github.com/arapelle/arba-grid"
         LANGUAGES CXX)
 message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)

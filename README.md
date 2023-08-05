@@ -13,7 +13,7 @@ Binaries:
 
 Libraries:
 
-- [math](https://github.com/arapelle/math) 0.4.0 or later
+- [arba-math](https://github.com/arapelle/arba-math) 0.4.0 or later
 
 Testing Libraries (optional):
 
@@ -82,10 +82,10 @@ int main()
 }
 ```
 
-## Example - Using *grid* in a CMake project
+## Example - Using *arba-grid* in a CMake project
 
-See *basic_cmake_project* example, and more specifically the *CMakeLists.txt* to see how to use *grid* in your CMake projects.
+See *basic_cmake_project* example, and more specifically the *CMakeLists.txt* to see how to use *arba-grid* in your CMake projects.
 
 # License
 
-[MIT License](./LICENSE.md) © grid
+[MIT License](./LICENSE.md) © arba-grid

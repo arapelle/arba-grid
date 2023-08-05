@@ -2,14 +2,17 @@
 
 #include "grid_types.hpp"
 
+inline namespace arba
+{
 namespace grid
 {
+
 class grid_base
 {
 protected:
     inline grid_base() : dimension_(0, 0) {}
     inline grid_base(unsigned width, unsigned height) : dimension_(width, height) {}
-    explicit grid_base(const grid_dimension& dimension) : dimension_(dimension) {}
+    inline explicit grid_base(const grid_dimension& dimension) : dimension_(dimension) {}
 
 public:
     inline const grid_dimension& dimension() const { return dimension_; }
@@ -73,4 +76,5 @@ grid_position grid_base::previous(grid_position position) const
     return position;
 }
 
+}
 }

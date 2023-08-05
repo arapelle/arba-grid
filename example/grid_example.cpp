@@ -1,10 +1,11 @@
-#include <grid/grid.hpp>
+#include <arba/grid/grid.hpp>
+#include <arba/grid/version.hpp>
 #include <string>
 #include <iostream>
 
 int main()
 {
-    grid::grid<std::string> gr(3,2, "----");
+    arba::grid::grid<std::string> gr(3,2, "----");
     gr.get(1,1) = "Cool";
 
     for (uint16_t j = 0; j < gr.height(); ++j)

@@ -1,8 +1,8 @@
-#include <grid/grid.hpp>
+#include <arba/grid/grid.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 
-template class grid::grid<std::string>;
+template class arba::grid::grid<std::string>;
 
 TEST(grid_tests, grid_constructor_empty)
 {
@@ -268,10 +268,4 @@ TEST(grid_tests, grid_iterator_at)
     ASSERT_EQ(cgr.iterator_at(grid::grid_position(0,1)), cgr.begin() + 3);
     ASSERT_EQ(gr.iterator_at(grid::grid_position(1,1)), gr.begin() + 4);
     ASSERT_EQ(cgr.iterator_at(grid::grid_position(1,1)), cgr.begin() + 4);
-}
-
-int main(int argc, char** argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

@@ -1,4 +1,8 @@
-add_cpp_library_tests(SHARED ${PROJECT_NAME}
-                      SOURCES
-                        grid_tests.cpp
-                     )
+find_or_fetch_GTest()
+
+add_cpp_library_basic_tests(GTest::gtest_main
+    HEADER_ONLY ${PROJECT_NAME}
+    SOURCES
+        project_version_tests.cpp
+        grid_tests.cpp
+)

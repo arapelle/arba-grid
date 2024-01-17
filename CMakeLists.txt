@@ -12,7 +12,7 @@ include(cmtk/CppLibraryProject)
 set(PROJECT_NAME "arba-grid")
 set(project_namespace "arba")
 set(project_base_name "grid")
-set(PROJECT_VERSION 0.3.0)
+set(PROJECT_VERSION 0.4.0)
 project(${PROJECT_NAME}
         VERSION ${PROJECT_VERSION}
         DESCRIPTION "Simple C++ tools to manipulate 2D grid objects."

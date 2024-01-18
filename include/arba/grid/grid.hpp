@@ -1,6 +1,6 @@
 #pragma once
 
-#include "concepts/grid_position.hpp"
+#include "concepts/grid.hpp"
 #include "grid_base.hpp"
 #include <vector>
 
@@ -28,6 +28,8 @@ public:
     inline grid() : base() {}
     inline grid(grid_dimension::number_type width, grid_dimension::number_type height, const value_type& value = value_type());
     inline explicit grid(const grid_dimension& dim, const value_type& value = value_type());
+    inline explicit grid(const grid& gr) = default;
+    inline explicit grid(const Grid auto& gr);
 
     inline const_reference get(int i, int j) const { return data_[j * this->width() + i]; }
     inline const_reference get(const GridPosition auto& pos) const { return get(pos.x(), pos.y()); }
@@ -76,6 +78,20 @@ template<typename valuetype>
 grid<valuetype>::grid(const grid_dimension &dim, const value_type &value)
     : base(dim), data_(dim.x() * dim.y(), value)
 {}
+
+template<typename valuetype>
+grid<valuetype>::grid(const Grid auto& gr)
+    : base(gr.width(), gr.height())
+{
+    data_.reserve(gr.width() * gr.height());
+    for (int64_t j = 0, end_j = gr.height(); j < end_j; ++j)
+    {
+        for (int64_t i = 0, end_i = gr.width(); i < end_i; ++i)
+        {
+            data_.push_back(gr.get(i, j));
+        }
+    }
+}
 
 template <typename valuetype>
 grid_position grid<valuetype>::value_position(const grid::value_type &ref) const

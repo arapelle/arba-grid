@@ -51,6 +51,44 @@ TEST(grid_tests, grid_constructor_dim)
     ASSERT_FALSE(gr.contains(2,2));
 }
 
+TEST(grid_tests, grid_copy_constructor)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<std::string> gr(dim);
+    gr.get(0,0) = "0_0";
+    gr.get(1,0) = "1_0";
+    gr.get(2,0) = "2_0";
+    gr.get(0,1) = "0_1";
+    gr.get(1,1) = "1_1";
+    gr.get(2,1) = "2_1";
+    grid::grid<std::string> new_gr(gr);
+    ASSERT_EQ(gr, new_gr);
+    new_gr.get(0,0) = "_0_";
+    ASSERT_EQ((new_gr.get(0,0)), "_0_");
+    ASSERT_EQ((gr.get(0,0)), "0_0");
+}
+
+TEST(grid_tests, grid_copy_constructor__Grid)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<int32_t> gr(dim);
+    gr.get(0,0) = 1;
+    gr.get(1,0) = 1;
+    gr.get(2,0) = 1;
+    gr.get(0,1) = 2;
+    gr.get(1,1) = 2;
+    gr.get(2,1) = 3;
+    grid::grid<int64_t> new_gr(gr);
+    ASSERT_EQ(new_gr.get(0,0), 1);
+    ASSERT_EQ(new_gr.get(1,0), 1);
+    ASSERT_EQ(new_gr.get(2,0), 1);
+    ASSERT_EQ(new_gr.get(0,1), 2);
+    ASSERT_EQ(new_gr.get(1,1), 2);
+    ASSERT_EQ(new_gr.get(2,1), 3);
+    new_gr.get(0,0) = 6;
+    ASSERT_EQ(gr.get(0,0), 1);
+}
+
 TEST(grid_tests, grid_advance)
 {
     grid::grid<std::string> gr(3,2);

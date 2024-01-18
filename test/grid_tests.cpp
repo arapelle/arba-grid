@@ -1,8 +1,18 @@
 #include <arba/grid/grid.hpp>
+#include <arba/grid/concepts/grid.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 
 template class arba::grid::grid<std::string>;
+
+// constant is_modable:
+template <typename>
+constexpr bool is_grid_v = false;
+
+template <arba::grid::concepts::Grid GT>
+constexpr bool is_grid_v<GT> = true;
+
+static_assert(is_grid_v<arba::grid::grid<std::string>>);
 
 TEST(grid_tests, grid_constructor_empty)
 {

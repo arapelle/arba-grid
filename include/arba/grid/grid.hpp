@@ -1,5 +1,6 @@
-#pragma once 
+#pragma once
 
+#include "concepts/grid_position.hpp"
 #include "grid_base.hpp"
 #include <vector>
 
@@ -29,11 +30,11 @@ public:
     inline explicit grid(const grid_dimension& dim, const value_type& value = value_type());
 
     inline const_reference get(int i, int j) const { return data_[j * this->width() + i]; }
-    inline const_reference get(const grid_position& pos) const { return get(pos.x(), pos.y()); }
-    inline const_reference operator[](const grid_position& pos) const { return get(pos.x(), pos.y()); }
+    inline const_reference get(const GridPosition auto& pos) const { return get(pos.x(), pos.y()); }
+    inline const_reference operator[](const GridPosition auto& pos) const { return get(pos.x(), pos.y()); }
     inline reference get(int i, int j) { return data_[j * this->width() + i]; }
-    inline reference get(const grid_position& pos) { return get(pos.x(), pos.y()); }
-    inline reference operator[](const grid_position& pos) { return get(pos.x(), pos.y()); }
+    inline reference get(const concepts::GridPosition auto& pos) { return get(pos.x(), pos.y()); }
+    inline reference operator[](const concepts::GridPosition auto& pos) { return get(pos.x(), pos.y()); }
 
     inline const_iterator begin() const { return data_.begin(); }
     inline iterator begin() { return data_.begin(); }
@@ -45,8 +46,8 @@ public:
     inline grid_position value_position(const value_type& ref) const;
     inline grid_position iterator_position(const_iterator iter) const { return value_position(*iter); }
     inline grid_position iterator_position(iterator iter) { return value_position(*iter); }
-    inline const_iterator iterator_at(const grid_position& position) const { return begin() + (position.y() * width() + position.x()); }
-    inline iterator iterator_at(const grid_position& position) { return begin() + (position.y() * width() + position.x()); }
+    inline const_iterator iterator_at(const GridPosition auto& position) const { return begin() + (position.y() * width() + position.x()); }
+    inline iterator iterator_at(const GridPosition auto& position) { return begin() + (position.y() * width() + position.x()); }
 
     inline const_pointer data() const { return data_.data(); }
     inline pointer data() { return data_.data(); }

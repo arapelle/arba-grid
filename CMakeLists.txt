@@ -12,7 +12,6 @@ include(cmtk/CppLibraryProject)
 set_project_name(NAMESPACE "arba" BASE_NAME "grid")
 string(TIMESTAMP configure_datetime "%Y%m%d-%H%M%S" UTC)
 set_project_semantic_version("0.4.0"
-    PRE_RELEASE "dev"
     BUILD_METADATA "${configure_datetime}"
 )
 project(${PROJECT_NAME}

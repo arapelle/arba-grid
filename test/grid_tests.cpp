@@ -89,6 +89,50 @@ TEST(grid_tests, grid_copy_constructor__Grid)
     ASSERT_EQ(gr.get(0,0), 1);
 }
 
+TEST(grid_tests, grid_assignment)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<int32_t> gr(dim);
+    gr.get(0,0) = 1;
+    gr.get(1,0) = 1;
+    gr.get(2,0) = 1;
+    gr.get(0,1) = 2;
+    gr.get(1,1) = 2;
+    gr.get(2,1) = 3;
+    grid::grid<int32_t> new_gr;
+    new_gr = gr;
+    ASSERT_EQ(new_gr.get(0,0), 1);
+    ASSERT_EQ(new_gr.get(1,0), 1);
+    ASSERT_EQ(new_gr.get(2,0), 1);
+    ASSERT_EQ(new_gr.get(0,1), 2);
+    ASSERT_EQ(new_gr.get(1,1), 2);
+    ASSERT_EQ(new_gr.get(2,1), 3);
+    new_gr.get(0,0) = 6;
+    ASSERT_EQ(gr.get(0,0), 1);
+}
+
+TEST(grid_tests, grid_assignment__Grid)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<int32_t> gr(dim);
+    gr.get(0,0) = 1;
+    gr.get(1,0) = 1;
+    gr.get(2,0) = 1;
+    gr.get(0,1) = 2;
+    gr.get(1,1) = 2;
+    gr.get(2,1) = 3;
+    grid::grid<int64_t> new_gr;
+    new_gr = gr;
+    ASSERT_EQ(new_gr.get(0,0), 1);
+    ASSERT_EQ(new_gr.get(1,0), 1);
+    ASSERT_EQ(new_gr.get(2,0), 1);
+    ASSERT_EQ(new_gr.get(0,1), 2);
+    ASSERT_EQ(new_gr.get(1,1), 2);
+    ASSERT_EQ(new_gr.get(2,1), 3);
+    new_gr.get(0,0) = 6;
+    ASSERT_EQ(gr.get(0,0), 1);
+}
+
 TEST(grid_tests, grid_advance)
 {
     grid::grid<std::string> gr(3,2);

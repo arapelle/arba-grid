@@ -31,6 +31,10 @@ public:
     inline explicit grid(const grid& gr) = default;
     inline explicit grid(const Grid auto& gr);
 
+    inline grid& operator=(grid&& gr) = default;
+    inline grid& operator=(const grid& gr) = default;
+    inline grid& operator=(const Grid auto& gr);
+
     inline const_reference get(int i, int j) const { return data_[j * this->width() + i]; }
     inline const_reference get(const GridPosition auto& pos) const { return get(pos.x(), pos.y()); }
     inline const_reference operator[](const GridPosition auto& pos) const { return get(pos.x(), pos.y()); }
@@ -88,9 +92,26 @@ grid<valuetype>::grid(const Grid auto& gr)
     {
         for (int64_t i = 0, end_i = gr.width(); i < end_i; ++i)
         {
-            data_.push_back(gr.get(i, j));
+            data_.emplace_back(gr.get(i, j));
         }
     }
+}
+
+template<typename valuetype>
+grid<valuetype>& grid<valuetype>::operator=(const Grid auto& gr)
+{
+    this->mutable_dimension() = grid_dimension(gr.width(), gr.height());
+
+    data_.clear();
+    data_.reserve(gr.width() * gr.height());
+    for (int64_t j = 0, end_j = gr.height(); j < end_j; ++j)
+    {
+        for (int64_t i = 0, end_i = gr.width(); i < end_i; ++i)
+        {
+            data_.emplace_back(gr.get(i, j));
+        }
+    }
+    return *this;
 }
 
 template <typename valuetype>

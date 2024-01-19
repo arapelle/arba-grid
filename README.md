@@ -13,7 +13,7 @@ Binaries:
 
 Libraries:
 
-- [arba-math](https://github.com/arapelle/arba-math) 0.4.0 or later
+- [arba-math](https://github.com/arapelle/arba-math) 0.5.0 or later
 
 Testing Libraries (optional):
 

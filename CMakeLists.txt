@@ -49,7 +49,7 @@ add_cpp_library(
 
 ## Link C++ targets:
 if(NOT TARGET arba-math)
-    find_package(arba-math 0.4.0 REQUIRED CONFIG)
+    find_package(arba-math 0.5.0 REQUIRED CONFIG)
 endif()
 target_link_libraries(${PROJECT_NAME}
     INTERFACE

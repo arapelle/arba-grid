@@ -9,10 +9,11 @@ include(cmtk/CppLibraryProject)
 
 # C++ PROJECT
 
-set(PROJECT_NAME "arba-grid")
-set(project_namespace "arba")
-set(project_base_name "grid")
-set(PROJECT_VERSION 0.3.0)
+set_project_name(NAMESPACE "arba" BASE_NAME "grid")
+string(TIMESTAMP configure_datetime "%Y%m%d-%H%M%S" UTC)
+set_project_semantic_version("0.4.0"
+    BUILD_METADATA "${configure_datetime}"
+)
 project(${PROJECT_NAME}
         VERSION ${PROJECT_VERSION}
         DESCRIPTION "Simple C++ tools to manipulate 2D grid objects."
@@ -24,12 +25,15 @@ include(CTest)
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header
-                              ${project_namespace}_${project_base_name}
-                              ${project_namespace}/${project_base_name}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
+    include/arba/grid/concepts/grid.hpp
+    include/arba/grid/concepts/grid_position.hpp
     include/arba/grid/grid.hpp
     include/arba/grid/grid_base.hpp
     include/arba/grid/grid_types.hpp
@@ -38,13 +42,13 @@ set(headers
 ## Add C++ library:
 add_cpp_library(
     HEADER_ONLY ${PROJECT_NAME}
-    HEADERS ${headers} ${generated_version_header}
+    HEADERS ${headers} ${configured_headers}
     CXX_STANDARD 20
 )
 
 ## Link C++ targets:
 if(NOT TARGET arba-math)
-    find_package(arba-math 0.4.0 REQUIRED CONFIG)
+    find_package(arba-math 0.5.0 REQUIRED CONFIG)
 endif()
 target_link_libraries(${PROJECT_NAME}
     INTERFACE

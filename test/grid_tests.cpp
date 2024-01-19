@@ -1,8 +1,18 @@
 #include <arba/grid/grid.hpp>
+#include <arba/grid/concepts/grid.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 
 template class arba::grid::grid<std::string>;
+
+// constant is_modable:
+template <typename>
+constexpr bool is_grid_v = false;
+
+template <arba::grid::concepts::Grid GT>
+constexpr bool is_grid_v<GT> = true;
+
+static_assert(is_grid_v<arba::grid::grid<std::string>>);
 
 TEST(grid_tests, grid_constructor_empty)
 {
@@ -39,6 +49,88 @@ TEST(grid_tests, grid_constructor_dim)
     ASSERT_TRUE(gr.contains(2,1));
     ASSERT_FALSE(gr.contains(3,1));
     ASSERT_FALSE(gr.contains(2,2));
+}
+
+TEST(grid_tests, grid_copy_constructor)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<std::string> gr(dim);
+    gr.get(0,0) = "0_0";
+    gr.get(1,0) = "1_0";
+    gr.get(2,0) = "2_0";
+    gr.get(0,1) = "0_1";
+    gr.get(1,1) = "1_1";
+    gr.get(2,1) = "2_1";
+    grid::grid<std::string> new_gr(gr);
+    ASSERT_EQ(gr, new_gr);
+    new_gr.get(0,0) = "_0_";
+    ASSERT_EQ((new_gr.get(0,0)), "_0_");
+    ASSERT_EQ((gr.get(0,0)), "0_0");
+}
+
+TEST(grid_tests, grid_copy_constructor__Grid)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<int32_t> gr(dim);
+    gr.get(0,0) = 1;
+    gr.get(1,0) = 1;
+    gr.get(2,0) = 1;
+    gr.get(0,1) = 2;
+    gr.get(1,1) = 2;
+    gr.get(2,1) = 3;
+    grid::grid<int64_t> new_gr(gr);
+    ASSERT_EQ(new_gr.get(0,0), 1);
+    ASSERT_EQ(new_gr.get(1,0), 1);
+    ASSERT_EQ(new_gr.get(2,0), 1);
+    ASSERT_EQ(new_gr.get(0,1), 2);
+    ASSERT_EQ(new_gr.get(1,1), 2);
+    ASSERT_EQ(new_gr.get(2,1), 3);
+    new_gr.get(0,0) = 6;
+    ASSERT_EQ(gr.get(0,0), 1);
+}
+
+TEST(grid_tests, grid_assignment)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<int32_t> gr(dim);
+    gr.get(0,0) = 1;
+    gr.get(1,0) = 1;
+    gr.get(2,0) = 1;
+    gr.get(0,1) = 2;
+    gr.get(1,1) = 2;
+    gr.get(2,1) = 3;
+    grid::grid<int32_t> new_gr;
+    new_gr = gr;
+    ASSERT_EQ(new_gr.get(0,0), 1);
+    ASSERT_EQ(new_gr.get(1,0), 1);
+    ASSERT_EQ(new_gr.get(2,0), 1);
+    ASSERT_EQ(new_gr.get(0,1), 2);
+    ASSERT_EQ(new_gr.get(1,1), 2);
+    ASSERT_EQ(new_gr.get(2,1), 3);
+    new_gr.get(0,0) = 6;
+    ASSERT_EQ(gr.get(0,0), 1);
+}
+
+TEST(grid_tests, grid_assignment__Grid)
+{
+    grid::grid_dimension dim(3,2);
+    grid::grid<int32_t> gr(dim);
+    gr.get(0,0) = 1;
+    gr.get(1,0) = 1;
+    gr.get(2,0) = 1;
+    gr.get(0,1) = 2;
+    gr.get(1,1) = 2;
+    gr.get(2,1) = 3;
+    grid::grid<int64_t> new_gr;
+    new_gr = gr;
+    ASSERT_EQ(new_gr.get(0,0), 1);
+    ASSERT_EQ(new_gr.get(1,0), 1);
+    ASSERT_EQ(new_gr.get(2,0), 1);
+    ASSERT_EQ(new_gr.get(0,1), 2);
+    ASSERT_EQ(new_gr.get(1,1), 2);
+    ASSERT_EQ(new_gr.get(2,1), 3);
+    new_gr.get(0,0) = 6;
+    ASSERT_EQ(gr.get(0,0), 1);
 }
 
 TEST(grid_tests, grid_advance)

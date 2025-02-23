@@ -38,8 +38,8 @@ configure_headers(configured_headers
 
 ## Headers:
 set(headers
-    include/arba/grid/concepts/grid.hpp
-    include/arba/grid/concepts/grid_position.hpp
+    include/arba/grid/concept/grid.hpp
+    include/arba/grid/concept/grid_position.hpp
     include/arba/grid/grid_base.hpp
     include/arba/grid/grid.hpp
     include/arba/grid/grid_types.hpp

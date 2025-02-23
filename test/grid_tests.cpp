@@ -1,4 +1,3 @@
-#include <arba/grid/concepts/grid.hpp>
 #include <arba/grid/grid.hpp>
 
 #include <gtest/gtest.h>

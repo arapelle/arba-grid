@@ -1,6 +1,6 @@
 #pragma once
 
-#include "concepts/grid.hpp"
+#include "concept/grid.hpp"
 #include "grid_base.hpp"
 
 #include <vector>
@@ -10,13 +10,13 @@ inline namespace arba
 namespace grid
 {
 
-template <typename valuetype>
+template <typename ValueType>
 class grid : public grid_base
 {
     using base = grid_base;
 
 public:
-    using value_type = valuetype;
+    using value_type = ValueType;
     using value_range = std::vector<value_type>;
     using reference = typename value_range::reference;
     using const_reference = typename value_range::const_reference;
@@ -80,19 +80,19 @@ private:
 
 // grid implementation:
 
-template <typename valuetype>
-grid<valuetype>::grid(grid_dimension::number width, grid_dimension::number height, const value_type& value)
+template <typename ValueType>
+grid<ValueType>::grid(grid_dimension::number width, grid_dimension::number height, const value_type& value)
     : base(width, height), data_(width * height, value)
 {
 }
 
-template <typename valuetype>
-grid<valuetype>::grid(const grid_dimension& dim, const value_type& value) : base(dim), data_(dim.x() * dim.y(), value)
+template <typename ValueType>
+grid<ValueType>::grid(const grid_dimension& dim, const value_type& value) : base(dim), data_(dim.x() * dim.y(), value)
 {
 }
 
-template <typename valuetype>
-grid<valuetype>::grid(const Grid auto& gr) : base(gr.width(), gr.height())
+template <typename ValueType>
+grid<ValueType>::grid(const Grid auto& gr) : base(gr.width(), gr.height())
 {
     data_.reserve(gr.width() * gr.height());
     for (int64_t j = 0, end_j = gr.height(); j < end_j; ++j)
@@ -104,8 +104,8 @@ grid<valuetype>::grid(const Grid auto& gr) : base(gr.width(), gr.height())
     }
 }
 
-template <typename valuetype>
-grid<valuetype>& grid<valuetype>::operator=(const Grid auto& gr)
+template <typename ValueType>
+grid<ValueType>& grid<ValueType>::operator=(const Grid auto& gr)
 {
     this->mutable_dimension() = grid_dimension(gr.width(), gr.height());
 
@@ -121,22 +121,22 @@ grid<valuetype>& grid<valuetype>::operator=(const Grid auto& gr)
     return *this;
 }
 
-template <typename valuetype>
-grid_position grid<valuetype>::value_position(const grid::value_type& ref) const
+template <typename ValueType>
+grid_position grid<ValueType>::value_position(const grid::value_type& ref) const
 {
     std::lldiv_t div = std::lldiv(&ref - data(), width());
     return grid_position(div.rem, div.quot);
 }
 
-template <typename valuetype>
-void grid<valuetype>::clear()
+template <typename ValueType>
+void grid<ValueType>::clear()
 {
     this->mutable_dimension() = grid_dimension();
     data_.clear();
 }
 
-template <typename valuetype>
-void grid<valuetype>::resize(grid_dimension::number width, grid_dimension::number height, const value_type& value)
+template <typename ValueType>
+void grid<ValueType>::resize(grid_dimension::number width, grid_dimension::number height, const value_type& value)
 {
     if (this->width() == width)
         data_.resize(width * height, value);
@@ -151,14 +151,14 @@ void grid<valuetype>::resize(grid_dimension::number width, grid_dimension::numbe
     this->mutable_dimension() = grid_dimension(width, height);
 }
 
-template <typename valuetype>
-void grid<valuetype>::resize(const grid_dimension& dimension, const value_type& value)
+template <typename ValueType>
+void grid<ValueType>::resize(const grid_dimension& dimension, const value_type& value)
 {
     resize(dimension.x(), dimension.y(), value);
 }
 
-template <typename valuetype>
-void grid<valuetype>::swap(grid& other)
+template <typename ValueType>
+void grid<ValueType>::swap(grid& other)
 {
     base::swap(other);
     std::swap(data_, other.data_);

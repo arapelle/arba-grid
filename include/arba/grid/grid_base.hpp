@@ -16,11 +16,11 @@ protected:
 
 public:
     inline const grid_dimension& dimension() const { return dimension_; }
-    inline grid_dimension::number_type width() const { return dimension_.x(); }
-    inline grid_dimension::number_type height() const { return dimension_.y(); }
+    inline grid_dimension::number width() const { return dimension_.x(); }
+    inline grid_dimension::number height() const { return dimension_.y(); }
     inline bool empty() const { return dimension_ == grid_dimension(); }
 
-    inline bool contains(grid_position::number_type i, grid_position::number_type j) const;
+    inline bool contains(grid_position::number i, grid_position::number j) const;
     inline bool contains(const grid_position& pos) const { return contains(pos.x(), pos.y()); }
 
     inline void advance(grid_position& position) const;
@@ -41,10 +41,10 @@ private:
 
 // grid_base implementation:
 
-bool grid_base::contains(grid_position::number_type i, grid_position::number_type j) const
+bool grid_base::contains(grid_position::number i, grid_position::number j) const
 {
-    return i >= 0 && static_cast<grid_dimension::number_type>(i) < dimension_.x()
-            && j >= 0 && static_cast<grid_dimension::number_type>(j) < dimension_.y();
+    return i >= 0 && static_cast<grid_dimension::number>(i) < dimension_.x() && j >= 0
+           && static_cast<grid_dimension::number>(j) < dimension_.y();
 }
 
 void grid_base::advance(grid_position& position) const
@@ -76,5 +76,5 @@ grid_position grid_base::previous(grid_position position) const
     return position;
 }
 
-}
-}
+} // namespace grid
+} // namespace arba

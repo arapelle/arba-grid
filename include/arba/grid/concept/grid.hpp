@@ -1,9 +1,9 @@
 #pragma once
 
-#include <type_traits>
-
-#include "grid_position.hpp"
 #include "../grid_types.hpp"
+#include "grid_position.hpp"
+
+#include <type_traits>
 
 inline namespace arba
 {
@@ -68,6 +68,6 @@ concept Grid = requires(const GridType& cgr)
 }))
 ;
 
-}
-}
-}
+} // namespace concepts
+} // namespace grid
+} // namespace arba

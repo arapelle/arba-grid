@@ -25,5 +25,6 @@ int main()
         std::cout << "[" << gr.value_position(str) << "]: " << str << std::endl;
     std::cout << std::endl;
 
+    std::cout << "TEST PACKAGE SUCCESS" << std::endl;
     return EXIT_SUCCESS;
 }

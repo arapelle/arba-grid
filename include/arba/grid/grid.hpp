@@ -26,7 +26,7 @@ public:
 
 public:
     inline grid() : base() {}
-    inline grid(grid_dimension::number_type width, grid_dimension::number_type height, const value_type& value = value_type());
+    inline grid(grid_dimension::number width, grid_dimension::number height, const value_type& value = value_type());
     inline explicit grid(const grid_dimension& dim, const value_type& value = value_type());
     inline explicit grid(const grid& gr) = default;
     inline explicit grid(const Grid auto& gr);
@@ -59,7 +59,7 @@ public:
     inline pointer data() { return data_.data(); }
 
     void clear();
-    void resize(grid_dimension::number_type width, grid_dimension::number_type height, const value_type& value = value_type());
+    void resize(grid_dimension::number width, grid_dimension::number height, const value_type& value = value_type());
     void resize(const grid_dimension& dimension, const value_type& value = value_type());
 
     void swap(grid& other);
@@ -74,7 +74,7 @@ private:
 // grid implementation:
 
 template<typename valuetype>
-grid<valuetype>::grid(grid_dimension::number_type width, grid_dimension::number_type height, const value_type &value)
+grid<valuetype>::grid(grid_dimension::number width, grid_dimension::number height, const value_type &value)
     : base(width, height), data_(width * height, value)
 {}
 
@@ -129,7 +129,7 @@ void grid<valuetype>::clear()
 }
 
 template <typename valuetype>
-void grid<valuetype>::resize(grid_dimension::number_type width, grid_dimension::number_type height, const value_type &value)
+void grid<valuetype>::resize(grid_dimension::number width, grid_dimension::number height, const value_type &value)
 {
     if (this->width() == width)
         data_.resize(width * height, value);

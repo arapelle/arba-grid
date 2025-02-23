@@ -17,5 +17,5 @@ using grid_position = grid_position32;
 using grid_offset = math::vec2i32;
 using grid_dimension = math::vec2u32;
 
-}
-}
+} // namespace grid
+} // namespace arba

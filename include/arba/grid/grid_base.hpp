@@ -43,8 +43,8 @@ private:
 
 bool grid_base::contains(grid_position::number i, grid_position::number j) const
 {
-    return i >= 0 && static_cast<grid_dimension::number>(i) < dimension_.x()
-            && j >= 0 && static_cast<grid_dimension::number>(j) < dimension_.y();
+    return i >= 0 && static_cast<grid_dimension::number>(i) < dimension_.x() && j >= 0
+           && static_cast<grid_dimension::number>(j) < dimension_.y();
 }
 
 void grid_base::advance(grid_position& position) const
@@ -76,5 +76,5 @@ grid_position grid_base::previous(grid_position position) const
     return position;
 }
 
-}
-}
+} // namespace grid
+} // namespace arba

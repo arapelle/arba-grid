@@ -29,7 +29,7 @@ conan create . --build=missing -c
 Add a requirement in your conanfile project file.
 ```python
     def requirements(self):
-        self.requires("arba-grid/0.5.0")
+        self.requires("arba-grid/0.6.0")
 ```
 
 ## Quick Install ##

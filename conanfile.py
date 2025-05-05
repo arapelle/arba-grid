@@ -49,7 +49,7 @@ class ArbaGridRecipe(ConanFile):
         cmake_layout(self)
 
     def requirements(self):
-        self.requires("arba-math/[^0.6]", transitive_headers=True, transitive_libs=True)
+        self.requires("arba-math/[^0.7]", transitive_headers=True, transitive_libs=True)
 
     def validate(self):
         check_min_cppstd(self, 20)
